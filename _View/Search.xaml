@@ -1,0 +1,58 @@
+﻿<Window x:Class="MainClient._View.Search"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        Style="{StaticResource Window_Style}"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="5">
+        <Border BorderThickness="2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <DataGrid x:Name="searchResults"
+                      Focusable="True"
+                      IsTabStop="True"
+                      ItemsSource="{Binding SearchResults}"
+                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                      Style="{StaticResource DataGrid}">
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Center" />
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Account Number"
+                                        Binding="{Binding AccountNumber}"
+                                        Width="110" />
+                    <DataGridTextColumn Header="First &amp; Last Name"
+                                        Binding="{Binding FirstLastName}"
+                                        Width="200" />
+                    <DataGridTextColumn Header="Customer ID"
+                                        Binding="{Binding CustomerID}"
+                                        Width="95" />
+                    <DataGridTextColumn Header="Address"
+                                        Binding="{Binding AccountAddress}"
+                                        Width="300" />
+                    <DataGridTextColumn Header="City"
+                                        Binding="{Binding AccountCity}"
+                                        Width="110" />
+                    <DataGridTextColumn Header="ST"
+                                        Binding="{Binding AccountState}"
+                                        Width="25" />
+                    <DataGridTextColumn Header="Zip"
+                                        Binding="{Binding AccountZip}"
+                                        Width="50" />
+                </DataGrid.Columns>
+                <DataGrid.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick"
+                                  Command="{Binding OpenAccountOverviewCommand}" />
+                    <KeyBinding Key="Enter"
+                                Command="{Binding OpenAccountOverviewCommand}" />
+                </DataGrid.InputBindings>
+            </DataGrid>
+        </Border>
+    </Grid>
+</Window>

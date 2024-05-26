@@ -1,0 +1,193 @@
+﻿<Window x:Class="MainClient._View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:MainClient._ViewModel"
+        xmlns:Menu="clr-namespace:MainClient.Utilities"
+        mc:Ignorable="d"
+        Title="Main Client"
+        MinHeight="850"
+        MinWidth="1100"
+        Height="850"
+        Width="1100"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow">
+    <Window.DataContext>
+        <vm:MainWindowVM />
+    </Window.DataContext>
+    <Grid Background="#f0f0f0">
+        <!-- Window Border -->
+        <Grid>
+            <!-- Base Grid -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="32" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!-- Navigation Panel -->
+            <Grid Grid.Row="0"
+                  Grid.ColumnSpan="2"
+                  Background="#E5E4E2">
+                <Menu>
+                    <MenuItem Header="File">
+                        <MenuItem Header="New Session"
+                                  Command="{Binding NewSessionCommand}" />
+                        <MenuItem Header="Exit"
+                                  Click="Exit" />
+                    </MenuItem>
+                    <MenuItem Header="Clients">
+                        <MenuItem Header="Add Client"
+                                  Command="{Binding AddClientCommand}" />
+                        <MenuItem Header="Add Account"
+                                  Command="{Binding AddAccountCommand}" />
+                    </MenuItem>
+                </Menu>
+            </Grid>
+            <!-- Search Navigation -->
+            <Border Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    BorderThickness="0 2 0 2"
+                    BorderBrush="#cccccc">
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Width="200"
+                                 Margin="5"
+                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter"
+                                            Command="{Binding SearchCommand}" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <Button Style="{StaticResource Button}"
+                                Content="Search"
+                                Command="{Binding SearchCommand}"
+                                Margin="5" />
+                        <Button Style="{StaticResource Button}"
+                                Content="Advanced Search"
+                                Command="{Binding AdvancedSearchCommand}"
+                                Margin="5" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <!-- Client Navigation -->
+            <Border Grid.Row="2"
+                    Margin="2, 0, 2, 0"
+                    Grid.ColumnSpan="2"
+                    BorderThickness="0 0 0 2"
+                    BorderBrush="#cccccc">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Margin="5"
+                               Text="{Binding ClientName}" />
+                    <ComboBox Name="clientAcctsResults"
+                              ItemsSource="{Binding ClientAcctsResults}"
+                              DisplayMemberPath="ClientAcctAndName"
+                              IsSynchronizedWithCurrentItem="True"
+                              SelectedItem="{Binding SelectedClientAccount, Mode=TwoWay}"
+                              SelectionChanged="ClientAcctsResults_SelectionChanged"
+                              HorizontalContentAlignment="Stretch"
+                              VerticalContentAlignment="Center"
+                              Grid.Column="2"
+                              Margin="5, 3, 5, 5"
+                              Width="400" />
+                    <TextBlock Grid.Column="4"
+                               Margin="5">Word of the Day</TextBlock>
+                    <TextBlock Grid.Column="5"
+                               Margin="5"
+                               Text="{Binding NewWord}" />
+                </Grid>
+            </Border>
+            <!-- Client Account Navigation -->
+            <Border Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    BorderThickness="0 0 0 2"
+                    BorderBrush="#cccccc">
+                <Menu>
+                    <Menu.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel VerticalAlignment="Center"
+                                        Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </Menu.ItemsPanel>
+                    <MenuItem Header="Client &amp; Accounts">
+                        <MenuItem Header="Client Overview"
+                                  Command="{Binding ClientOverviewCommand}" />
+                        <MenuItem Header="Account Overview"
+                                  Command="{Binding AccountOverviewCommand}" />
+                        <MenuItem Header="Holdings"
+                                  Command="{Binding PositionsCommand}" />
+                        <MenuItem Header="Transactions"
+                                  Command="{Binding TransactionsCommand}" />
+                        <MenuItem Header="Access History"
+                                  Command="{Binding AccessHistoryCommand}" />
+                    </MenuItem>
+                    <MenuItem Header="Notes">
+                        <MenuItem Header="View Notes"
+                                  Command="{Binding ViewNotesCommand}" />
+                        <MenuItem Header="Add Notes"
+                                  Command="{Binding AddNotesCommand}" />
+                    </MenuItem>
+                    <MenuItem Header="Cashiering">
+                        <MenuItem Header="Account Deposit">
+                            <MenuItem Header="Cash Deposit"
+                                      Command="{Binding DepositCashCommand}" />
+                            <MenuItem Header="Single Check Deposit"
+                                      Command="{Binding DepositCheckSingleCommand}" />
+                            <MenuItem Header="Split Check Deposit"
+                                      Command="{Binding DepositCheckSplitCommand}" />
+                            <MenuItem Header="Multiple Check Deposit"
+                                      Command="{Binding DepositCheckMultipleCommand}" />
+                        </MenuItem>
+                        <MenuItem Header="Account Withdrawal">
+                            <MenuItem Header="Cash Withdrawal"
+                                      Command="{Binding WithdrawalCashCommand}" />
+                            <MenuItem Header="Journal Withdrawal"
+                                      Command="{Binding WithdrawalJournalCommand}" />
+                            <MenuItem Header="Single Check Withdrawal"
+                                      Command="{Binding WithdrawalCheckSingleCommand}" />
+                            <MenuItem Header="ACH Withdrawal"
+                                      Command="{Binding WithdrawalAchCommand}" />
+                            <MenuItem Header="Wire Withdrawal"
+                                      Command="{Binding WithdrawalWireCommand}" />
+                        </MenuItem>
+                        <MenuItem Header="ACH Link"
+                                  Command="{Binding AchLinkCommand}" />
+                    </MenuItem>
+                    <MenuItem Header="Trading">
+                        <MenuItem Header="Trade Entry">
+                            <MenuItem Header="Buy"
+                                      Command="{Binding TradeBuyCommand}" />
+                            <MenuItem Header="Sell"
+                                      Command="{Binding TradeSellCommand}" />
+                        </MenuItem>
+                        <MenuItem Header="Trade Status"
+                                  Command="{Binding TradeStatusCommand}" />
+                    </MenuItem>
+                </Menu>
+            </Border>
+            <!-- Main Page -->
+            <Grid Grid.Row="4"
+                  Grid.ColumnSpan="2">
+                <ContentControl x:Name="Pages"
+                                Content="{Binding CurrentView}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

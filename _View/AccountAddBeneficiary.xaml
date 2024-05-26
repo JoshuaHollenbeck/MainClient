@@ -1,0 +1,164 @@
+﻿<Window x:Class="MainClient._View.AccountAddBeneficiary"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:MainClient._ViewModel"
+        xmlns:utilities="clr-namespace:MainClient.Utilities"
+        mc:Ignorable="d"
+        SizeToContent="Height"
+        Width="796"
+        Style="{StaticResource Window_Style}"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Border BorderThickness="2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.ColumnSpan="5"
+                           Style="{StaticResource ContainerHeader}"
+                           TextAlignment="Center"
+                           Text="Add Beneficiaries" />
+                <TextBlock Grid.Row="1"
+                           Width="175"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="First Name" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Width="175"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Last Name" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="2"
+                           Width="175"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Tax ID" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="3"
+                           Width="175"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Relationship Type" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="4"
+                           Width="175"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Beneficiary Portion" />
+                <TextBox Grid.Row="2"
+                         Width="175"
+                         Margin="5"
+                         Text="{Binding NewMultiBeneficiary.MultiBeneFirstName, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Column="1"
+                         Grid.Row="2"
+                         Width="175"
+                         Margin="5"
+                         Text="{Binding NewMultiBeneficiary.MultiBeneLastName, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Column="2"
+                         Grid.Row="2"
+                         Width="175"
+                         Margin="5"
+                         Text="{Binding NewMultiBeneficiary.MultiBeneTaxId, UpdateSourceTrigger=PropertyChanged}" />
+                <ComboBox Grid.Column="3"
+                          Grid.Row="2"
+                          Width="175"
+                          Margin="5"
+                          DisplayMemberPath="RelationshipType"
+                          SelectedValuePath="RelationshipType"
+                          ItemsSource="{Binding RelationshipInfos}"
+                          SelectedItem="{Binding SelectedRelationshipTypeInfo, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Column="4"
+                         Grid.Row="2"
+                         Width="175"
+                         Margin="5"
+                         Text="{Binding NewMultiBeneficiary.MultiBenePortion, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                BorderThickness="2 0 2 2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <ListView Grid.Row="3"
+                      Grid.ColumnSpan="8"
+                      AlternationCount="2"
+                      Height="200"
+                      ItemsSource="{Binding MultiBeneficiaryDetails}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex"
+                                     Value="0">
+                                <Setter Property="Background"
+                                        Value="White" />
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex"
+                                     Value="1">
+                                <Setter Property="Background"
+                                        Value="LightGray" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="155"
+                                        Header="First Name"
+                                        DisplayMemberBinding="{Binding MultiBeneFirstName}" />
+                        <GridViewColumn Width="150"
+                                        Header="Last Name"
+                                        DisplayMemberBinding="{Binding MultiBeneLastName}" />
+                        <GridViewColumn Width="150"
+                                        Header="Tax ID"
+                                        DisplayMemberBinding="{Binding MultiBeneTaxId}" />
+                        <GridViewColumn Width="100"
+                                        Header="Relationship Type"
+                                        DisplayMemberBinding="{Binding MultiRelationshipType}" />
+                        <GridViewColumn Width="75"
+                                        Header="Amount"
+                                        DisplayMemberBinding="{Binding MultiBenePortion, StringFormat=N2}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+        <Border Grid.Row="2"
+                BorderThickness="2 0 2 2"
+                BorderBrush="#cccccc">
+            <Button Style="{StaticResource Button}"
+                    Content="Add More"
+                    Command="{Binding AddMultiBeneficiaryCommand}"
+                    HorizontalAlignment="Center" />
+        </Border>
+        <Border Grid.Row="3"
+                BorderThickness="2 0 2 2"
+                BorderBrush="#cccccc">
+            <Button Style="{StaticResource Button}"
+                    Content="Submit Check Deposits"
+                    Command="{Binding AddBeneficiaryMultipleCommand}"
+                    HorizontalAlignment="Center" />
+        </Border>
+    </Grid>
+</Window>

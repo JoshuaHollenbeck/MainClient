@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="MainClient._View.Balances"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:MainClient._ViewModel"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="622"
+             Style="{StaticResource Page_Style}">
+    <UserControl.DataContext>
+        <vm:BalancesVM />
+    </UserControl.DataContext>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border BorderThickness="2"
+                    BorderBrush="#cccccc"
+                    Padding="5 5 5 0">
+                <TextBlock Style="{StaticResource ContainerHeader}"
+                           TextAlignment="Center"
+                           Text="Account Balances" />
+            </Border>
+            <Border Grid.Row="1"
+                    BorderThickness="2 0 2 2"
+                    BorderBrush="#cccccc"
+                    Padding="5">
+                <DataGrid Name="balancesResults"
+                          ItemsSource="{Binding AcctBalances}"
+                          AutoGenerateColumns="True"
+                          IsReadOnly="True" />
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

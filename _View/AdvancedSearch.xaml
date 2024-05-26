@@ -1,0 +1,208 @@
+﻿<Window x:Class="MainClient._View.AdvancedSearch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Width="950"
+        Style="{StaticResource Window_Style}"
+        WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Key="Enter"
+                    Command="{Binding PerformAdvancedSearchCommand}" />
+    </Window.InputBindings>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Border BorderThickness="2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource ContainerHeader}"
+                           TextAlignment="Center"
+                           Text="Advanced Search"
+                           Grid.ColumnSpan="7" />
+                <Label Grid.Row="1"
+                       Style="{StaticResource EntryLabelLarge}">Last Name</Label>
+                <Label Grid.Row="1"
+                       Grid.Column="2"
+                       Style="{StaticResource EntryLabelLarge}">First Name</Label>
+                <Label Grid.Row="1"
+                       Grid.Column="4"
+                       Style="{StaticResource EntryLabelLarge}">Middle Initial</Label>
+                <Label Grid.Row="2"
+                       Style="{StaticResource EntryLabelLarge}">Customer ID</Label>
+                <Label Grid.Row="2"
+                       Grid.Column="2"
+                       Style="{StaticResource EntryLabelLarge}">Phone</Label>
+                <Label Grid.Row="3"
+                       Style="{StaticResource EntryLabelLarge}">Tax ID</Label>
+                <Label Grid.Row="3"
+                       Grid.Column="2"
+                       Style="{StaticResource EntryLabelLarge}">Postal Code</Label>
+                <Label Grid.Row="4"
+                       Style="{StaticResource EntryLabelLarge}">Account Number</Label>
+                <Label Grid.Row="4"
+                       Grid.Column="2"
+                       Style="{StaticResource EntryLabelLarge}">Email Address</Label>
+                <TextBox Grid.Row="1"
+                         Grid.Column="1"
+                         x:Name="LastNameTextBox"
+                         Style="{StaticResource EntryTextBoxLarge}"
+                         Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding PerformAdvancedSearchCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <TextBox Grid.Row="1"
+                         Grid.Column="3"
+                         Style="{StaticResource EntryTextBoxLarge}"
+                         Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding PerformAdvancedSearchCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <TextBox Grid.Row="1"
+                         Grid.Column="5"
+                         Style="{StaticResource EntryTextBoxSmall}"
+                         Text="{Binding MiddleInitial, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding PerformAdvancedSearchCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <TextBox Grid.Row="2"
+                         Grid.Column="1"
+                         Style="{StaticResource EntryTextBoxLarge}"
+                         Text="{Binding CustomerID, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding PerformAdvancedSearchCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <TextBox Grid.Row="2"
+                         Grid.Column="3"
+                         Style="{StaticResource EntryTextBoxLarge}"
+                         Text="{Binding CustPhone, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding PerformAdvancedSearchCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <TextBox Grid.Row="3"
+                         Grid.Column="1"
+                         Style="{StaticResource EntryTextBoxLarge}"
+                         Text="{Binding CustTaxId, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding PerformAdvancedSearchCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <TextBox Grid.Row="3"
+                         Grid.Column="3"
+                         Style="{StaticResource EntryTextBoxLarge}"
+                         Text="{Binding CustZip, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding PerformAdvancedSearchCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <TextBox Grid.Row="4"
+                         Grid.Column="1"
+                         Style="{StaticResource EntryTextBoxLarge}"
+                         Text="{Binding AcctNum, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding PerformAdvancedSearchCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <TextBox Grid.Row="4"
+                         Grid.Column="3"
+                         Style="{StaticResource EntryTextBoxLarge}"
+                         Text="{Binding CustEmail, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding PerformAdvancedSearchCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                BorderThickness="2 0 2 2"
+                BorderBrush="#cccccc">
+            <Button Style="{StaticResource Button}"
+                    Content="Search"
+                    Command="{Binding PerformAdvancedSearchCommand}" />
+        </Border>
+        <Border Grid.Row="2"
+                BorderThickness="2 0 2 2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <DataGrid x:Name="advancedSearchResults"
+                      Focusable="True"
+                      IsTabStop="True"
+                      ItemsSource="{Binding AdvancedSearchResults}"
+                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                      Style="{StaticResource DataGrid}"
+                      MaxHeight="360">
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Center" />
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Account Number"
+                                        Binding="{Binding AccountNumber}"
+                                        Width="110" />
+                    <DataGridTextColumn Header="First &amp; Last Name"
+                                        Binding="{Binding FirstLastName}"
+                                        Width="200" />
+                    <DataGridTextColumn Header="Customer ID"
+                                        Binding="{Binding CustomerID}"
+                                        Width="95" />
+                    <DataGridTextColumn Header="Address"
+                                        Binding="{Binding AccountAddress}"
+                                        Width="300" />
+                    <DataGridTextColumn Header="City"
+                                        Binding="{Binding AccountCity}"
+                                        Width="110" />
+                    <DataGridTextColumn Header="ST"
+                                        Binding="{Binding AccountState}"
+                                        Width="25" />
+                    <DataGridTextColumn Header="Zip"
+                                        Binding="{Binding AccountZip}"
+                                        Width="50" />
+                </DataGrid.Columns>
+                <DataGrid.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick"
+                                  Command="{Binding OpenAccountOverviewCommand}" />
+                    <KeyBinding Key="Enter"
+                                Command="{Binding OpenAccountOverviewCommand}" />
+                </DataGrid.InputBindings>
+            </DataGrid>
+        </Border>
+    </Grid>
+</Window>

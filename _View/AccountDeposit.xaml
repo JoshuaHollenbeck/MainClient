@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="MainClient._View.AccountDeposit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:MainClient._ViewModel"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="622"
+             Style="{StaticResource Page_Style}">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Border BorderThickness="2 0 2 2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource ContainerHeader}"
+                           TextAlignment="Center"
+                           Text="Check Deposit" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label Style="{StaticResource EntryLabelLarge}">Payer Name</Label>
+                    <Label Grid.Column="1"
+                           Style="{StaticResource EntryLabelLarge}">Check Number</Label>
+                    <Label Grid.Column="2"
+                           Style="{StaticResource EntryLabelLarge}">Check Account Number</Label>
+                    <Label Grid.Column="3"
+                           Style="{StaticResource EntryLabelLarge}">Check Routing</Label>
+                    <Label Grid.Column="4"
+                           Style="{StaticResource EntryLabelLarge}">Check Date</Label>
+                    <Label Grid.Column="5"
+                           Style="{StaticResource EntryLabelLarge}">Memo</Label>
+                    <Label Grid.Column="6"
+                           Style="{StaticResource EntryLabelLarge}">Check Amount</Label>
+                    <TextBox Grid.Row="1"
+                             Style="{StaticResource EntryTextBoxLarge}"
+                             Text="{Binding CheckPayerName}" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             Style="{StaticResource EntryTextBoxLarge}"
+                             Text="{Binding CheckNumber}" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="2"
+                             Style="{StaticResource EntryTextBoxLarge}"
+                             Text="{Binding CheckAccountNumber}" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="3"
+                             Style="{StaticResource EntryTextBoxLarge}"
+                             Text="{Binding CheckRouting}" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="4"
+                             Style="{StaticResource EntryTextBoxLarge}"
+                             Text="{Binding CheckDate}" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="5"
+                             Style="{StaticResource EntryTextBoxLarge}"
+                             Text="{Binding CheckMemo}" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="6"
+                             Style="{StaticResource EntryTextBoxLarge}"
+                             Text="{Binding CheckAmount}" />
+                    <Button Grid.Row="1"
+                            Grid.Column="7"
+                            HorizontalAlignment="Right"
+                            Style="{StaticResource Button}"
+                            Content="Submit ACH Payment"
+                            Command="{Binding AddAchPaymentCommand}"
+                            Margin="5" />
+                </Grid>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                BorderThickness="2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource ContainerHeader}"
+                           Text="Account Deposit" />
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource ContainerTitle}"
+                               Margin="10, 0"
+                               Text="Check Name" />
+                    <TextBlock Style="{StaticResource ContainerTitle}"
+                               Margin="5, 0"
+                               Text="Check Number" />
+                    <TextBlock Style="{StaticResource ContainerTitle}"
+                               Margin="5, 0"
+                               Text="Check Date" />
+                    <TextBlock Style="{StaticResource ContainerTitle}"
+                               Margin="5, 0, 10, 0"
+                               Text="Amount" />
+                    <TextBlock Style="{StaticResource ContainerTitle}"
+                               Margin="5, 0"
+                               Text="Memo" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

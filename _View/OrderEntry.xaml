@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="MainClient._View.OrderEntry"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:MainClient._ViewModel"
+             mc:Ignorable="d"
+             d:DesignHeight="600"
+             d:DesignWidth="622"
+             Style="{StaticResource Page_Style}">
+
+    <UserControl.DataContext>
+        <vm:OrderEntryVM />
+    </UserControl.DataContext>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Grid Column 0-->
+        <Border Grid.Row="0" BorderThickness="2" BorderBrush="#cccccc" Padding="5">
+            <Grid>                    
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock >ORDER ENTRY</TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" BorderThickness="2 0 2 2" BorderBrush="#cccccc" Padding="5">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Date &amp; Time</TextBlock>
+                    <TextBlock>Name</TextBlock>
+                    <TextBlock>Rep ID</TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" BorderThickness="2 0 2 2" BorderBrush="#cccccc" Padding="5">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>xx/xx/xxxx 00:00:00 am/pm</TextBlock>
+                    <TextBlock>Rep Name</TextBlock>
+                    <TextBlock>Rep Id</TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

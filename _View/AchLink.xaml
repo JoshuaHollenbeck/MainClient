@@ -1,0 +1,227 @@
+﻿<UserControl x:Class="MainClient._View.AchLink"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:MainClient._ViewModel"
+             xmlns:utilities="clr-namespace:MainClient.Utilities"
+             mc:Ignorable="d"
+             Style="{StaticResource Page_Style}">
+    <UserControl.Resources>
+        <utilities:CurrencyFormatConverter x:Key="CurrencyFormatConverter" />
+    </UserControl.Resources>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Border BorderThickness="2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource ContainerHeader}"
+                           TextAlignment="Center"
+                           Text="ACH Link" />
+                <DataGrid Grid.Row="1"
+                          Name="achLinkResults"
+                          ItemsSource="{Binding ACHLinkResults}"
+                          Style="{StaticResource DataGrid}"
+                          MaxHeight="250">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Center" />
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nickname"
+                                            Binding="{Binding AchNickname}"
+                                            Width="*" />
+                        <DataGridTextColumn Header="Bank Name"
+                                            Binding="{Binding AchBankName}"
+                                            Width="325" />
+                        <DataGridTextColumn Header="Routing Number"
+                                            Binding="{Binding AchRoutingNumber}"
+                                            Width="110" />
+                        <DataGridTextColumn Header="Account Number"
+                                            Binding="{Binding AchAccountNumber}"
+                                            Width="110" />
+                        <DataGridTextColumn Header="Account Type"
+                                            Binding="{Binding AchAccountType}"
+                                            Width="100" />
+                        <DataGridTextColumn Header="Added On"
+                                            Binding="{Binding AchAddedDate, StringFormat={}{0:MM/dd/yyyy}}"
+                                            Width="100" />
+                        <DataGridTextColumn Header="Removed On"
+                                            Binding="{Binding AchRemovedDate, StringFormat={}{0:MM/dd/yyyy}}"
+                                            Width="100" />
+                        <DataGridTextColumn Header="Rep ID"
+                                            Binding="{Binding AchRepID}"
+                                            Width="75" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                BorderThickness="2 0 2 2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource ContainerHeader}"
+                           TextAlignment="Center"
+                           Text="Recent ACH Transactions" />
+                <DataGrid Grid.Row="1"
+                          Name="achTransactionResults"
+                          ItemsSource="{Binding ACHTransactionResults}"
+                          Style="{StaticResource DataGrid}"
+                          MaxHeight="224">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Center" />
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Date"
+                                            Binding="{Binding TransactionDate}"
+                                            Width="150" />
+                        <DataGridTemplateColumn Header="Amount"
+                                                Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding TransactionAmt, Converter={StaticResource CurrencyFormatConverter}}"
+                                                   VerticalAlignment="Center"
+                                                   Grid.Column="0" />
+                                        <TextBlock Text="{Binding TransactionAmt, StringFormat=N2}"
+                                                   TextAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   Grid.Column="1" />
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Bank Name"
+                                            Binding="{Binding TransactionBankName}"
+                                            Width="325" />
+                        <DataGridTextColumn Header="Routing Number"
+                                            Binding="{Binding TransactionRoutingNumber}"
+                                            Width="150" />
+                        <DataGridTextColumn Header="Account Number"
+                                            Binding="{Binding TransactionAccountNumber}"
+                                            Width="150" />
+                        <DataGridTextColumn Header="Rep ID"
+                                            Binding="{Binding TransactionRepID}"
+                                            Width="75" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+        <Border Grid.Row="2"
+                BorderThickness="2 0 2 2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource ContainerHeader}"
+                           TextAlignment="Center"
+                           Text="Add ACH Link" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{StaticResource EntryLabelLarge}">Bank Name</Label>
+                    <ComboBox Height="22"
+                              VerticalContentAlignment="Center"
+                              Width="325"
+                              Grid.Column="1"
+                              Name="achBankResults"
+                              ItemsSource="{Binding AchBankResults}"
+                              SelectedItem="{Binding SelectedBank}"
+                              IsTextSearchEnabled="True"
+                              TextSearch.TextPath="AchBankName"
+                              MaxDropDownHeight="275">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding AchBankName}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Label Style="{StaticResource EntryLabelLarge}"
+                           Grid.Column="2">Routing Number</Label>
+                    <TextBlock Grid.Column="3"
+                               TextAlignment="Left"
+                               Style="{StaticResource EntryTextBlockLarge}"
+                               Text="{Binding SelectedBank.AchRoutingNumber}" />
+                    <Label Style="{StaticResource EntryLabelMedium}"
+                           Grid.Column="4">Account Type</Label>
+                    <ComboBox Height="22"
+                              VerticalContentAlignment="Center"
+                              Width="100"
+                              Grid.Column="5"
+                              Name="achBankTypeResults"
+                              ItemsSource="{Binding AchBankTypeResults}"
+                              SelectedItem="{Binding SelectedBankType}"
+                              IsTextSearchEnabled="True"
+                              TextSearch.TextPath="AchBankType"
+                              MaxDropDownHeight="50">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding AchBankType}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{StaticResource EntryLabelLarge}">Account Number</Label>
+                    <TextBox Grid.Column="1"
+                             Width="325"
+                             Style="{StaticResource EntryTextBoxLarge}"
+                             Text="{Binding NewAchAccountNumber}" />
+                    <Label Style="{StaticResource EntryLabelLarge}"
+                           Grid.Column="2">Nickname</Label>
+                    <TextBox Grid.Column="3"
+                               Style="{StaticResource EntryTextBoxLarge}"
+                               Text="{Binding NewAchNickname}" />
+                    <Button Grid.Column="5"
+                            HorizontalAlignment="Right"
+                            Style="{StaticResource Button}"
+                            Content="Add ACH Link"
+                            Command="{Binding CompositeAddAchLinkCommand}"
+                            Margin="5" />
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

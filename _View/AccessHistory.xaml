@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="MainClient._View.AccessHistory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:MainClient._ViewModel"
+             mc:Ignorable="d"
+             Style="{StaticResource Page_Style}">
+    <Grid Margin="250 5 250 5">
+        <Border Grid.Row="0"
+                BorderThickness="2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource ContainerHeader}"
+                           TextAlignment="Center"
+                           Text="Account Access History" />
+                <DataGrid Grid.Row="1"
+                          Grid.ColumnSpan="3"
+                          Name="acctAccessHistoryResults"
+                          ItemsSource="{Binding AcctAccessHistoryResults}"
+                          Style="{StaticResource DataGrid}">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Center" />
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Account Number"
+                                            Binding="{Binding HistoryAccountNumber}"
+                                            Width="*" />
+                        <DataGridTextColumn Header="Rep ID"
+                                            Binding="{Binding HistoryRepID}"
+                                            Width="75" />
+                        <DataGridTextColumn Header="Date"
+                                            Binding="{Binding HistoryDate}"
+                                            Width="150" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
