@@ -1,0 +1,99 @@
+﻿<Window x:Class="MainClient._View.WithdrawalWire"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:MainClient._ViewModel"
+        xmlns:utilities="clr-namespace:MainClient.Utilities"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        Style="{StaticResource Window_Style}"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <utilities:DateTimeFormatConverter x:Key="DateTimeFormatConverter" />
+    </Window.Resources>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Border BorderThickness="2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!-- Client ID Container -->
+                <TextBlock Style="{StaticResource ContainerHeader}"
+                           Grid.ColumnSpan="4"
+                           Text="Wire Withrdawal"
+                           TextAlignment="Center" />
+                <TextBlock Grid.Row="1"
+                           Width="175"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Wire Routing Number" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           Width="175"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Wire Account Number" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="2"
+                           Width="175"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Wire Currency" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="3"
+                           Width="175"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Wire Amount" />
+                <ComboBox Grid.Row="2"
+                          Width="175"
+                          Margin="5"
+                          DisplayMemberPath="BankRoutingNumber"
+                          SelectedValuePath="BankRoutingNumber"
+                          ItemsSource="{Binding BankRoutingInfos}"
+                          SelectedItem="{Binding SelectedRoutingInfo, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Column="1"
+                         Grid.Row="2"
+                         Width="175"
+                         Margin="5"
+                         Text="{Binding WireToAccountNumber, UpdateSourceTrigger=PropertyChanged}" />
+                <ComboBox Grid.Column="2"
+                          Grid.Row="2"
+                          Width="175"
+                          Margin="5"
+                          DisplayMemberPath="CurrencyAbbr"
+                          SelectedValuePath="CurrencyAbbr"
+                          ItemsSource="{Binding CurrencyTypes}"
+                          SelectedItem="{Binding SelectedCurrencyType, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Column="3"
+                         Grid.Row="2"
+                         Width="175"
+                         Margin="5"
+                         Text="{Binding WireAmountText, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                BorderThickness="2 0 2 2"
+                BorderBrush="#cccccc">
+            <Button Style="{StaticResource Button}"
+                    Content="Submit Wire Withdrawal"
+                    Command="{Binding AddWireWithdrawalCommand}"
+                    HorizontalAlignment="Center" />
+        </Border>
+    </Grid>
+</Window>

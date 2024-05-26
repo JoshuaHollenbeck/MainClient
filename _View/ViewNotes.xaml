@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="MainClient._View.ViewNotes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:MainClient._ViewModel"
+             mc:Ignorable="d"
+             Style="{StaticResource Page_Style}">
+    <Grid Margin="5">
+        <Border Grid.Row="0"
+                BorderThickness="2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource ContainerHeader}"
+                           TextAlignment="Center"
+                           Text="Account Notes"
+                           Grid.ColumnSpan="3" />
+                <Button Style="{StaticResource ContainerButton}"
+                        Grid.Column="1"
+                        Command="{Binding AddNotesCommand}"
+                        Content="New Note" />
+                <DataGrid Grid.Row="1"
+                          Grid.ColumnSpan="3"
+                          Name="acctNoteResults"
+                          ItemsSource="{Binding AcctNoteResults}"
+                          Style="{StaticResource DataGrid}">
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Center" />
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Note"
+                                            Binding="{Binding Note}"
+                                            Width="*" />
+                        <DataGridTextColumn Header="Created"
+                                            Binding="{Binding NoteCreated}"
+                                            Width="150" />
+                        <DataGridTextColumn Header="Rep ID"
+                                            Binding="{Binding NoteRepID}"
+                                            Width="75" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

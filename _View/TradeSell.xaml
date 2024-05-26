@@ -1,0 +1,197 @@
+﻿<Window x:Class="MainClient._View.TradeSell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:MainClient._ViewModel"
+        xmlns:utilities="clr-namespace:MainClient.Utilities"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        Style="{StaticResource Window_Style}"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <utilities:DateTimeFormatConverter x:Key="DateTimeFormatConverter" />
+        <utilities:CurrencyFormatConverter x:Key="CurrencyFormatConverter" />
+        <utilities:DynamicCurrencyFormatConverter x:Key="DynamicCurrencyFormatConverter" />
+        <utilities:CultureToCurrencySymbolConverter x:Key="CultureToCurrencySymbolConverter" />
+    </Window.Resources>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Border BorderThickness="2"
+                BorderBrush="#cccccc"
+                Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.ColumnSpan="9"
+                           Style="{StaticResource ContainerHeader}"
+                           TextAlignment="Center"
+                           Text="Sell Trade" />
+                <TextBlock Grid.Row="1"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Width="400"
+                           Text="Stock Name" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Width="150"
+                           Text="Stock Ticker" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="2"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Stock Available" />
+                <ComboBox Grid.Row="2"
+                          Width="400"
+                          Margin="5"
+                          ItemsSource="{Binding AccountHoldings}"
+                          SelectedItem="{Binding SelectedStock, Mode=TwoWay}"
+                          SelectedValuePath="PositionsStockTicker"
+                          DisplayMemberPath="PositionsStockName" />
+                <TextBlock Grid.Column="1"
+                           Grid.Row="2"
+                           Margin="5"
+                           Text="{Binding DisplayStockInfo, Mode=OneWay}" />
+                <TextBlock Grid.Column="2"
+                           Grid.Row="2"
+                           Margin="5"
+                           Text="{Binding StockAvailable, Mode=OneWay}" />
+            </Grid>
+        </Border>
+        <Border Grid.Row="1"
+                BorderThickness="2 0 2 2"
+                BorderBrush="#cccccc">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock TextAlignment="Center"
+                           Margin="5"
+                           Text="Trade Quanity" />
+                <TextBlock Grid.Column="1"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Sell Price" />
+                <TextBlock Grid.Column="2"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="USD Price" />
+                <TextBlock Grid.Column="3"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Local Price" />
+                <TextBlock Grid.Column="4"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Currency" />
+                <TextBlock Grid.Column="5"
+                           TextAlignment="Center"
+                           Margin="5"
+                           Text="Total Trade Price" />
+                <TextBox Grid.Row="1"
+                         Margin="5"
+                         Text="{Binding SellTradeQuantityText, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Column="1"
+                         Grid.Row="1"
+                         Margin="5"
+                         Text="{Binding SellPriceText, UpdateSourceTrigger=PropertyChanged}" />
+                <Grid Grid.Column="2"
+                      Grid.Row="1"
+                      Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="$"
+                               VerticalAlignment="Center"
+                               Grid.Column="0" />
+                    <TextBlock TextAlignment="Right"
+                               VerticalAlignment="Center"
+                               Grid.Column="1">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0:N2}">
+                                <Binding Path="UsdPrice" />
+                                <Binding Path="SelectedCultureInfo" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+                <Grid Grid.Column="3"
+                      Grid.Row="1"
+                      Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding SelectedCultureInfo, Converter={StaticResource CultureToCurrencySymbolConverter}}"
+                               VerticalAlignment="Center"
+                               Grid.Column="0" />
+                    <TextBlock TextAlignment="Right"
+                               VerticalAlignment="Center"
+                               Grid.Column="1">
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource DynamicCurrencyFormatConverter}"
+                                          StringFormat="{}{0:N2}">
+                                <Binding Path="LocalPrice" />
+                                <Binding Path="SelectedCultureInfo" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+                <TextBlock Grid.Column="4"
+                           Grid.Row="1"
+                           Margin="5"
+                           Padding="3"
+                           Height="22"
+                           TextAlignment="Center"
+                           Text="{Binding SellTradeCurrency, Mode=OneWay}" />
+                <Grid Grid.Column="5"
+                      Grid.Row="1"
+                      Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding TotalTradePrice, Converter={StaticResource CurrencyFormatConverter}}"
+                               VerticalAlignment="Center"
+                               Grid.Column="0" />
+                    <TextBlock Text="{Binding TotalTradePrice, StringFormat=N2}"
+                               TextAlignment="Right"
+                               VerticalAlignment="Center"
+                               Grid.Column="1" />
+                </Grid>
+            </Grid>
+        </Border>
+        <Border Grid.Row="2"
+                BorderThickness="2 0 2 2"
+                BorderBrush="#cccccc">
+            <Button Style="{StaticResource Button}"
+                    Content="Submit Trade"
+                    Command="{Binding SellTradeCommand}"
+                    HorizontalAlignment="Center" />
+        </Border>
+    </Grid>
+</Window>

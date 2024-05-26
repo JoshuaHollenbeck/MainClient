@@ -1,0 +1,41 @@
+﻿<Window x:Class="MainClient._View.SearchWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="450"
+             Style="{StaticResource Page_Style}">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Grid Column 0-->
+        <Border Grid.Row="0" BorderThickness="2" BorderBrush="#cccccc" Padding="5">
+            <Grid>                    
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock >SEARCH RESULTS</TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" BorderThickness="2 0 2 2" BorderBrush="#cccccc" Padding="5">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Name</TextBlock>
+                    <TextBlock>Customer ID</TextBlock>
+                    <TextBlock>Tax ID</TextBlock>
+                    <TextBlock>Address</TextBlock>
+                    <TextBlock>Accounts</TextBlock>
+                    <TextBlock>Date of Birth</TextBlock>
+                    <TextBlock>Phone</TextBlock>
+                    <TextBlock>Email Address</TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
