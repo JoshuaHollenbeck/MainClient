@@ -1,0 +1,88 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:MainClient._ViewModel"
+                    xmlns:view="clr-namespace:MainClient._View">
+
+    <!-- Startup -->
+    <DataTemplate DataType="{x:Type vm:HomeVM}">
+        <view:Home />
+    </DataTemplate>
+
+    <!-- Main -->
+    <DataTemplate DataType="{x:Type vm:MainWindowVM}">
+        <view:MainWindow />
+    </DataTemplate>
+
+    <!-- Client & Accounts -->
+    <DataTemplate DataType="{x:Type vm:ClientOverviewVM}">
+        <view:ClientOverview />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:AccountOverviewVM}">
+        <view:AccountOverview />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:PositionsVM}">
+        <view:Positions />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:TransactionsVM}">
+        <view:Transactions />
+    </DataTemplate>
+
+     <DataTemplate DataType="{x:Type vm:AccessHistoryVM}">
+        <view:AccessHistory />
+    </DataTemplate>
+
+    <!-- Notes -->
+    <DataTemplate DataType="{x:Type vm:AddNotesVM}">
+        <view:AddNotes />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ViewNotesVM}">
+        <view:ViewNotes />
+    </DataTemplate>
+
+    <!-- Cashiering -->
+    <DataTemplate DataType="{x:Type vm:AchLinkVM}">
+        <view:AchLink />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:DepositCheckMultipleVM}">
+        <view:DepositCheckMultiple />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:DepositCheckSingleVM}">
+        <view:DepositCheckSingle />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:DepositCheckSplitVM}">
+        <view:DepositCheckSplit />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:WithdrawalAchVM}">
+        <view:WithdrawalAch />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:WithdrawalCheckSingleVM}">
+        <view:WithdrawalCheckSingle />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:WithdrawalWireVM}">
+        <view:WithdrawalWire />
+    </DataTemplate>
+
+    <!-- Trading -->
+    <DataTemplate DataType="{x:Type vm:TradeBuyVM}">
+        <view:TradeBuy />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:TradeStatusVM}">
+        <view:TradeStatus />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:TradeSellVM}">
+        <view:TradeSell />
+    </DataTemplate>
+
+</ResourceDictionary>
